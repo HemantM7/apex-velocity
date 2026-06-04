@@ -1,26 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #02040A;
+  --bg-secondary: #0B0F18;
+  --bg-card: #1A1A24;
+  --accent-orange: #FF5A1F;
+  --accent-orange-dim: #FF4D00;
+  --accent-orange-glow: rgba(255, 90, 31, 0.4);
+  --text-white: #F5F5F5;
+  --text-muted: #7B7F87;
+  --metallic: #C0C0D0;
+  --border-subtle: rgba(192, 192, 208, 0.15);
+  --border-active: rgba(255, 90, 31, 0.6);
+  --glass-bg: rgba(11, 15, 24, 0.7);
+  --glass-border: rgba(192, 192, 208, 0.1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-accent: var(--accent-orange);
+  --color-accent-dim: var(--accent-orange-dim);
+  --color-text-white: var(--text-white);
+  --color-text-muted: var(--text-muted);
+  --color-metallic: var(--metallic);
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-white);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-orange);
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(255, 90, 31, 0.3);
+  color: var(--text-white);
+}
+
+/* Utility classes */
+.font-bebas { font-family: 'Bebas Neue', sans-serif; }
+.font-mono-custom { font-family: 'Space Mono', monospace; }
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FF5A1F 0%, #FF8C5A 50%, #FF5A1F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-silver {
+  background: linear-gradient(135deg, #C0C0D0 0%, #E8E8F0 50%, #9090A0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-orange {
+  background: rgba(255, 90, 31, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 90, 31, 0.2);
+}
+
+.glow-orange {
+  box-shadow: 0 0 20px rgba(255, 90, 31, 0.4), 0 0 60px rgba(255, 90, 31, 0.15);
+}
+
+.glow-orange-sm {
+  box-shadow: 0 0 10px rgba(255, 90, 31, 0.3);
+}
+
+.border-accent {
+  border: 1px solid rgba(255, 90, 31, 0.4);
+}
+
+.border-metallic {
+  border: 1px solid rgba(192, 192, 208, 0.2);
+}
+
+.card-dark {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(192, 192, 208, 0.25);
+}
+
+/* Noise texture overlay */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.04;
+}
+
+/* Gradient overlays */
+.gradient-to-black-bottom {
+  background: linear-gradient(to bottom, transparent 0%, rgba(2, 4, 10, 0.8) 70%, #02040A 100%);
+}
+
+.gradient-hero {
+  background: radial-gradient(ellipse at 60% 50%, rgba(255, 90, 31, 0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(80, 40, 120, 0.12) 0%, transparent 50%),
+              linear-gradient(180deg, #02040A 0%, #0B0F18 50%, #02040A 100%);
+}
+
+/* Animated underline */
+.animated-underline {
+  position: relative;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-orange);
+  transition: width 0.3s ease;
+}
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* Skew hover effect for buttons */
+.btn-skew {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-skew:hover {
+  transform: skewX(-3deg) translateY(-1px);
+}
+
+/* Performance bar animation */
+@keyframes fillBar {
+  from { width: 0; }
+  to { width: var(--target-width); }
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 90, 31, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(255, 90, 31, 0.6), 0 0 50px rgba(255, 90, 31, 0.2); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Scan line effect */
+@keyframes scanLine {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Cursor custom */
+.cursor-none { cursor: none; }
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Cinematic letter spacing */
+.tracking-cinematic { letter-spacing: 0.15em; }
+.tracking-wide-xl { letter-spacing: 0.08em; }
+
+/* Grid overlay */
+.grid-overlay {
+  background-image: 
+    linear-gradient(rgba(192, 192, 208, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192, 192, 208, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Clip path for diagonal sections */
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+.clip-diagonal-reverse {
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .hero-title { font-size: clamp(3rem, 12vw, 6rem); }
 }
