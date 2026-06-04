@@ -14,8 +14,8 @@ import {
   Heart,
   Share2,
   Download,
-  ChevronLeft,
-  ChevronRight,
+  Palette,
+  ShoppingBag,
 } from "lucide-react";
 import type { Vehicle } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
@@ -148,14 +148,14 @@ export function VehicleDetailClient({ vehicle, related }: Props) {
                     <Share2 size={18} className="text-white" />
                   </button>
                   <Link
-                    href={`/configure?model=${vehicle.id}`}
+                    href={`/vehicles/${vehicle.id}/order`}
                     className="btn-skew px-6 py-3 bg-[#FF5A1F] text-black font-semibold tracking-widest text-sm hover:bg-[#FF7A3F] transition-colors flex items-center gap-2"
                     style={{
                       clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)",
                     }}
                   >
-                    CONFIGURE
-                    <ArrowRight size={14} />
+                    ORDER NOW
+                    <ShoppingBag size={14} />
                   </Link>
                 </div>
               </div>
@@ -296,7 +296,7 @@ export function VehicleDetailClient({ vehicle, related }: Props) {
               >
                 AVAILABLE COLORS
               </h3>
-              <div className="flex flex-wrap gap-3 mb-10">
+              <div className="flex flex-wrap gap-3 mb-4">
                 {vehicle.colors.map((color) => (
                   <div key={color.name} className="flex flex-col items-center gap-2">
                     <div
@@ -310,15 +310,40 @@ export function VehicleDetailClient({ vehicle, related }: Props) {
                   </div>
                 ))}
               </div>
+              <Link
+                href={`/vehicles/${vehicle.id}/colors`}
+                className="inline-flex items-center gap-1.5 text-xs text-[#7B7F87] hover:text-[#FF5A1F] transition-colors mb-10"
+              >
+                <Palette size={12} />
+                <span style={{ fontFamily: "'Space Mono', monospace" }}>
+                  VIEW ALL FINISHES IN COLOUR STUDIO →
+                </span>
+              </Link>
 
               {/* CTAs */}
               <div className="flex flex-col gap-3">
                 <Link
-                  href={`/configure?model=${vehicle.id}`}
+                  href={`/vehicles/${vehicle.id}/order`}
                   className="w-full py-4 bg-[#FF5A1F] text-black font-semibold tracking-widest text-sm text-center hover:bg-[#FF7A3F] transition-colors flex items-center justify-center gap-2"
                   style={{ fontFamily: "'Space Mono', monospace" }}
                 >
-                  CONFIGURE YOUR {vehicle.name}
+                  <ShoppingBag size={14} />
+                  ORDER YOUR {vehicle.name}
+                </Link>
+                <Link
+                  href={`/vehicles/${vehicle.id}/colors`}
+                  className="w-full py-4 border border-[#FF5A1F]/40 text-[#FF5A1F] font-medium tracking-widest text-sm text-center hover:bg-[#FF5A1F]/5 transition-all flex items-center justify-center gap-2"
+                  style={{ fontFamily: "'Space Mono', monospace" }}
+                >
+                  <Palette size={14} />
+                  EXPLORE COLOUR STUDIO
+                </Link>
+                <Link
+                  href={`/configure?model=${vehicle.id}`}
+                  className="w-full py-4 border border-white/20 text-white font-medium tracking-widest text-sm text-center hover:border-[#FF5A1F] hover:text-[#FF5A1F] transition-all flex items-center justify-center gap-2"
+                  style={{ fontFamily: "'Space Mono', monospace" }}
+                >
+                  CONFIGURE VEHICLE
                   <ArrowRight size={14} />
                 </Link>
                 <Link

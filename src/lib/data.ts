@@ -1,3 +1,12 @@
+export interface VehicleColor {
+  name: string;
+  hex: string;
+  type: "gloss" | "matte" | "satin" | "metallic" | "carbon";
+  priceAdd: number;
+  description: string;
+  available: boolean;
+}
+
 export interface Vehicle {
   id: string;
   name: string;
@@ -19,7 +28,7 @@ export interface Vehicle {
     drivetrain: string;
     aeroDrag: number;
   };
-  colors: { name: string; hex: string }[];
+  colors: VehicleColor[];
   images: {
     hero: string;
     gallery: string[];
@@ -56,10 +65,10 @@ export const vehicles: Vehicle[] = [
       aeroDrag: 0.28,
     },
     colors: [
-      { name: "Obsidian Black", hex: "#0A0A0F" },
-      { name: "Titanium Silver", hex: "#C0C0D0" },
-      { name: "Inferno Orange", hex: "#FF5A1F" },
-      { name: "Midnight Blue", hex: "#0D1B3E" },
+      { name: "Obsidian Black", hex: "#0A0A0F", type: "gloss", priceAdd: 0, description: "Deep void black with a mirror-like gloss finish. The definitive Apex colour.", available: true },
+      { name: "Titanium Silver", hex: "#C0C0D0", type: "metallic", priceAdd: 8500, description: "Aerospace-grade metallic silver inspired by our carbon fibre manufacturing facility.", available: true },
+      { name: "Inferno Orange", hex: "#FF5A1F", type: "gloss", priceAdd: 12000, description: "Our signature Electric Orange — the colour of speed, reserved for those who demand attention.", available: true },
+      { name: "Midnight Blue", hex: "#0D1B3E", type: "metallic", priceAdd: 8500, description: "Deep ocean metallic blue with shifting tone under different lighting conditions.", available: true },
     ],
     images: {
       hero: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&q=90",
@@ -107,10 +116,10 @@ export const vehicles: Vehicle[] = [
       aeroDrag: 0.32,
     },
     colors: [
-      { name: "Phantom Black", hex: "#111118" },
-      { name: "Arctic White", hex: "#F0F0F5" },
-      { name: "British Racing Green", hex: "#004225" },
-      { name: "Bordeaux Red", hex: "#5C0A14" },
+      { name: "Phantom Black", hex: "#111118", type: "gloss", priceAdd: 0, description: "Pitch-black gloss that absorbs light and commands presence wherever it travels.", available: true },
+      { name: "Arctic White", hex: "#F0F0F5", type: "gloss", priceAdd: 8500, description: "Pristine white gloss — understated, elegant, timeless.", available: true },
+      { name: "British Racing Green", hex: "#004225", type: "metallic", priceAdd: 14000, description: "A nod to motorsport heritage. Deep emerald metallic with gold-fleck undertones.", available: true },
+      { name: "Bordeaux Red", hex: "#5C0A14", type: "metallic", priceAdd: 14000, description: "Rich wine-red metallic inspired by the finest vintages of the French countryside.", available: true },
     ],
     images: {
       hero: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=90",
@@ -156,10 +165,10 @@ export const vehicles: Vehicle[] = [
       aeroDrag: 0.21,
     },
     colors: [
-      { name: "Stealth Black", hex: "#0A0A0F" },
-      { name: "Volt Yellow", hex: "#E8FF00" },
-      { name: "Deep Space", hex: "#0D0D2B" },
-      { name: "Glacier White", hex: "#F8F8FF" },
+      { name: "Stealth Black", hex: "#0A0A0F", type: "matte", priceAdd: 0, description: "Dead-flat matte black. Zero reflections. Pure aggression.", available: true },
+      { name: "Volt Yellow", hex: "#E8FF00", type: "gloss", priceAdd: 18000, description: "High-voltage yellow — the colour of electricity itself. Exclusive to VOLT R.", available: true },
+      { name: "Deep Space", hex: "#0D0D2B", type: "satin", priceAdd: 16000, description: "Satin-finish midnight navy with a subtle blue shift, like looking into the cosmos.", available: true },
+      { name: "Glacier White", hex: "#F8F8FF", type: "satin", priceAdd: 10000, description: "Cool off-white satin — clean, futuristic, and unmistakably electric.", available: true },
     ],
     images: {
       hero: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1920&q=90",
@@ -204,10 +213,10 @@ export const vehicles: Vehicle[] = [
       aeroDrag: 0.31,
     },
     colors: [
-      { name: "Guards Red", hex: "#CC0000" },
-      { name: "Racing Yellow", hex: "#FFD700" },
-      { name: "Chalk White", hex: "#E8E8E0" },
-      { name: "Jet Black", hex: "#0A0A0A" },
+      { name: "Guards Red", hex: "#CC0000", type: "gloss", priceAdd: 0, description: "The quintessential racing red. Gloss finish, zero compromises.", available: true },
+      { name: "Racing Yellow", hex: "#FFD700", type: "gloss", priceAdd: 10000, description: "Championship-grade yellow straight from the track paddock.", available: true },
+      { name: "Chalk White", hex: "#E8E8E0", type: "matte", priceAdd: 12000, description: "Matte chalk finish — stripped of ego, focused entirely on performance.", available: true },
+      { name: "Jet Black", hex: "#0A0A0A", type: "matte", priceAdd: 12000, description: "Flat matte black. As purposeful and uncompromising as the car itself.", available: true },
     ],
     images: {
       hero: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=90",
@@ -253,10 +262,10 @@ export const vehicles: Vehicle[] = [
       aeroDrag: 0.29,
     },
     colors: [
-      { name: "Emerald Green", hex: "#1A4A2E" },
-      { name: "Midnight Black", hex: "#0A0A0F" },
-      { name: "Pearl White", hex: "#F5F5F0" },
-      { name: "Sapphire Blue", hex: "#0A2A5C" },
+      { name: "Emerald Green", hex: "#1A4A2E", type: "metallic", priceAdd: 14000, description: "Rich deep green metallic — a statement of sustainable luxury.", available: true },
+      { name: "Midnight Black", hex: "#0A0A0F", type: "gloss", priceAdd: 0, description: "Classic gloss black with blue-black depth under sunlight.", available: true },
+      { name: "Pearl White", hex: "#F5F5F0", type: "metallic", priceAdd: 10000, description: "Three-stage pearl white with warm gold iridescence in daylight.", available: true },
+      { name: "Sapphire Blue", hex: "#0A2A5C", type: "metallic", priceAdd: 14000, description: "Deep sapphire metallic with violet shimmer. Exquisite under evening light.", available: true },
     ],
     images: {
       hero: "https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=1920&q=90",
@@ -301,9 +310,9 @@ export const vehicles: Vehicle[] = [
       aeroDrag: 0.26,
     },
     colors: [
-      { name: "Matte Black", hex: "#111118" },
-      { name: "Matte Orange", hex: "#CC4400" },
-      { name: "Carbon Grey", hex: "#2A2A35" },
+      { name: "Matte Black", hex: "#111118", type: "matte", priceAdd: 0, description: "Aggressive flat-black matte. The track weapon's natural state.", available: true },
+      { name: "Matte Orange", hex: "#CC4400", type: "matte", priceAdd: 18000, description: "Exclusive matte burnt orange — brutal, distinctive, limited.", available: true },
+      { name: "Carbon Grey", hex: "#2A2A35", type: "carbon", priceAdd: 28000, description: "Exposed carbon fibre weave with grey tint clear coat. Structural beauty made visible.", available: true },
     ],
     images: {
       hero: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=90",
